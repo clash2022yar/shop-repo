@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="بدون تصویر">
+  <rect width="400" height="400" fill="#F7F7F8"/>
+  <g fill="none" stroke="#D1D2D4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M290 150v100a18 18 0 0 1-9.5 15.8l-72 38.6a18 18 0 0 1-17 0l-72-38.6A18 18 0 0 1 110 250V150"/>
+    <path d="M112 140l80-42.8a18 18 0 0 1 16 0l80 42.8-88 47.2-88-47.2z"/>
+    <path d="M200 187.2V296"/>
+  </g>
+  <text x="200" y="352" text-anchor="middle" font-family="Vazirmatn, sans-serif" font-size="20" fill="#A1A3A8">بدون تصویر</text>
+</svg>

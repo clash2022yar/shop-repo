@@ -1,0 +1,565 @@
+/*
+|--------------------------------------------------------------------------
+| Digino — design system entry point
+|--------------------------------------------------------------------------
+| Built with the Tailwind CLI into public/css/app.css.  No Vite, no bundler,
+| no front-end framework: the compiled stylesheet is committed and served
+| straight from public/.
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ fonts */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../fonts/vazirmatn-arabic-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1,
+    U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74,
+    U+FE76-FEFC;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../fonts/vazirmatn-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ------------------------------------------------------------------- base */
+@layer base {
+  :root {
+    --dg-header-h: 122px;
+    --dg-radius: 0.75rem;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink-50 font-sans text-[0.9375rem] leading-7 text-ink-900 antialiased;
+    font-feature-settings: 'ss01', 'ss02';
+  }
+
+  /* Persian digits keep their own rhythm; disable ligature weirdness. */
+  input,
+  textarea,
+  select,
+  button {
+    @apply font-sans;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-pill bg-ink-300;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ink-400;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-400 ring-offset-2 ring-offset-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-bold text-ink-900;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  /* Numeric strings stay LTR even inside RTL paragraphs. */
+  .ltr {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+}
+
+/* ------------------------------------------------------------- components */
+@layer components {
+  /* ============================ Buttons ============================ */
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-field px-4 py-2.5
+           text-sm font-bold transition-all duration-200 ease-out-soft
+           disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-brand-500 text-white shadow-sm hover:bg-brand-600
+           hover:shadow-[0_6px_18px_rgba(239,57,78,.32)] active:scale-[.98];
+  }
+  .btn-outline {
+    @apply btn border border-brand-500 bg-white text-brand-500 hover:bg-brand-50 active:scale-[.98];
+  }
+  .btn-ghost {
+    @apply btn border border-ink-200 bg-white text-ink-700 hover:border-ink-300 hover:bg-ink-50 active:scale-[.98];
+  }
+  .btn-dark {
+    @apply btn bg-ink-900 text-white hover:bg-ink-800 active:scale-[.98];
+  }
+  .btn-success {
+    @apply btn bg-success-500 text-white hover:bg-success-600 active:scale-[.98];
+  }
+  .btn-danger {
+    @apply btn bg-brand-500 text-white hover:bg-brand-600 active:scale-[.98];
+  }
+  .btn-soft {
+    @apply btn bg-ink-100 text-ink-700 hover:bg-ink-200 active:scale-[.98];
+  }
+  .btn-link {
+    @apply inline-flex items-center gap-1 text-sm font-bold text-brand-500 transition-all
+           hover:gap-2 hover:text-brand-600;
+  }
+  .btn-lg {
+    @apply px-6 py-3.5 text-base;
+  }
+  .btn-sm {
+    @apply px-3 py-2 text-xs;
+  }
+  .btn-icon {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-field text-ink-500
+           transition-all duration-200 hover:bg-ink-100 hover:text-ink-800 active:scale-90;
+  }
+
+  /* ============================ Surfaces =========================== */
+  .card {
+    @apply rounded-card border border-ink-200/70 bg-white shadow-card;
+  }
+  .card-hover {
+    @apply card transition-all duration-300 ease-out-soft hover:-translate-y-1 hover:border-transparent hover:shadow-card-hover;
+  }
+  .panel {
+    @apply rounded-card bg-white p-5 shadow-card;
+  }
+  .section {
+    @apply mb-4 rounded-card bg-white p-4 shadow-card md:p-6;
+  }
+  .section-head {
+    @apply mb-5 flex items-center justify-between gap-3;
+  }
+  .section-title {
+    @apply text-lg font-extrabold text-ink-900 md:text-xl;
+  }
+  .divider {
+    @apply my-4 h-px w-full bg-ink-200;
+  }
+
+  /* ============================= Forms ============================= */
+  .label {
+    @apply mb-1.5 block text-xs font-bold text-ink-700;
+  }
+  .field {
+    @apply block w-full rounded-field border border-ink-200 bg-white px-3.5 py-2.5 text-sm
+           text-ink-900 placeholder:text-ink-400 transition-all duration-200
+           focus:border-brand-400 focus:shadow-ring focus:outline-none
+           disabled:cursor-not-allowed disabled:bg-ink-100;
+  }
+  .field-sm {
+    @apply field px-3 py-2 text-xs;
+  }
+  .field-error {
+    @apply border-brand-400 bg-brand-50/40;
+  }
+  .help {
+    @apply mt-1 block text-2xs text-ink-500;
+  }
+  .error-text {
+    @apply mt-1 flex items-center gap-1 text-2xs font-bold text-brand-600 animate-fade-down;
+  }
+  .checkbox {
+    @apply h-[18px] w-[18px] cursor-pointer rounded border-2 border-ink-300 text-brand-500
+           transition-all duration-150 focus:ring-brand-400 focus:ring-offset-0 checked:border-brand-500;
+  }
+  .radio {
+    @apply h-[18px] w-[18px] cursor-pointer border-2 border-ink-300 text-brand-500 focus:ring-brand-400;
+  }
+  .switch {
+    @apply relative h-6 w-11 cursor-pointer rounded-pill bg-ink-300 transition-colors duration-300;
+  }
+  .switch[data-on='1'] {
+    @apply bg-success-500;
+  }
+  .switch > span {
+    @apply absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all duration-300 ease-bounce2;
+    inset-inline-end: 0.125rem;
+  }
+  .switch[data-on='1'] > span {
+    inset-inline-end: 1.375rem;
+  }
+
+  /* ============================ Badges ============================= */
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-pill px-2.5 py-1 text-2xs font-bold;
+  }
+  .badge-red {
+    @apply badge bg-brand-500 text-white;
+  }
+  .badge-red-soft {
+    @apply badge bg-brand-50 text-brand-600;
+  }
+  .badge-green {
+    @apply badge bg-success-50 text-success-600;
+  }
+  .badge-amber {
+    @apply badge bg-warning-50 text-warning-600;
+  }
+  .badge-blue {
+    @apply badge bg-info-50 text-info-600;
+  }
+  .badge-gray {
+    @apply badge bg-ink-100 text-ink-600;
+  }
+  .badge-dot::before {
+    content: '';
+    @apply h-1.5 w-1.5 rounded-full bg-current;
+  }
+  /* Discount chip as seen on the product cards in the mockups */
+  .chip-discount {
+    @apply inline-flex min-w-[2.25rem] items-center justify-center rounded-pill bg-brand-500
+           px-2 py-0.5 text-xs font-extrabold text-white;
+  }
+
+  /* ========================= Product card ========================== */
+  .product-card {
+    @apply relative flex h-full flex-col rounded-card border border-ink-200/70 bg-white p-3
+           transition-all duration-300 ease-out-soft hover:z-10 hover:-translate-y-1.5
+           hover:border-transparent hover:shadow-card-hover;
+  }
+  .product-card__media {
+    @apply relative mb-3 flex aspect-square items-center justify-center overflow-hidden rounded-lg bg-white;
+  }
+  .product-card__media img {
+    @apply h-full w-full object-contain transition-transform duration-500 ease-out-soft
+           group-hover:scale-[1.07];
+  }
+  .product-card__brand {
+    @apply mb-1 text-2xs text-ink-400;
+  }
+  .product-card__title {
+    @apply mb-2 line-clamp-2 min-h-[2.75rem] text-[0.8125rem] font-medium leading-6 text-ink-800
+           transition-colors group-hover:text-brand-500;
+  }
+  .product-card__price {
+    @apply mt-auto flex items-baseline justify-end gap-1 pt-2;
+  }
+  .price-amount {
+    @apply text-base font-extrabold text-ink-900;
+  }
+  .price-currency {
+    @apply text-2xs font-medium text-ink-600;
+  }
+  .price-old {
+    @apply text-xs text-ink-400 line-through;
+  }
+  .wish-btn {
+    @apply absolute top-2 z-10 grid h-8 w-8 place-items-center rounded-full text-ink-300
+           transition-all duration-200 hover:bg-brand-50 hover:text-brand-500 active:scale-90;
+    inset-inline-start: 0.5rem;
+  }
+  .wish-btn[data-active='1'] {
+    @apply text-brand-500;
+  }
+  .wish-btn[data-active='1'] svg {
+    fill: currentColor;
+  }
+
+  /* =========================== Stars =============================== */
+  .stars {
+    @apply inline-flex items-center gap-px;
+  }
+  .stars svg {
+    @apply h-3.5 w-3.5;
+  }
+
+  /* ============================ Tabs =============================== */
+  .tabs {
+    @apply flex items-center gap-1 overflow-x-auto border-b border-ink-200;
+  }
+  .tab {
+    @apply relative whitespace-nowrap px-4 py-3 text-sm font-bold text-ink-500 transition-colors
+           duration-200 hover:text-ink-800;
+  }
+  .tab::after {
+    content: '';
+    @apply absolute inset-x-3 bottom-0 h-[3px] scale-x-0 rounded-t-full bg-brand-500
+           transition-transform duration-300 ease-out-soft;
+  }
+  .tab[aria-selected='true'] {
+    @apply text-brand-500;
+  }
+  .tab[aria-selected='true']::after {
+    @apply scale-x-100;
+  }
+
+  /* ========================= Breadcrumb ============================ */
+  .breadcrumb {
+    @apply flex flex-wrap items-center gap-1.5 text-2xs text-ink-500;
+  }
+  .breadcrumb a {
+    @apply hover:text-brand-500;
+  }
+
+  /* ============================ Table ============================== */
+  .table-wrap {
+    @apply w-full overflow-x-auto rounded-card border border-ink-200 bg-white;
+  }
+  .table {
+    @apply w-full min-w-[46rem] border-collapse text-sm;
+  }
+  .table thead th {
+    @apply whitespace-nowrap border-b border-ink-200 bg-ink-50 px-4 py-3 text-start text-xs
+           font-bold text-ink-600;
+  }
+  .table tbody td {
+    @apply border-b border-ink-100 px-4 py-3 align-middle text-ink-700;
+  }
+  .table tbody tr {
+    @apply transition-colors duration-150 hover:bg-ink-50/70;
+  }
+  .table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  /* ============================ Modal ============================== */
+  .modal-backdrop {
+    @apply fixed inset-0 z-[90] bg-ink-950/50 backdrop-blur-[2px];
+  }
+  .modal-box {
+    @apply relative z-[95] max-h-[88vh] w-full overflow-y-auto rounded-card bg-white shadow-pop;
+  }
+
+  /* ============================ Toast ============================== */
+  .toast {
+    @apply pointer-events-auto flex items-start gap-3 rounded-card bg-white p-3.5 pe-4 shadow-pop
+           ring-1 ring-ink-200;
+  }
+
+  /* ========================== Skeleton ============================= */
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-ink-100;
+  }
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-l
+           from-transparent via-white/70 to-transparent;
+  }
+
+  /* ========================= Admin shell =========================== */
+  .admin-nav-link {
+    @apply relative flex items-center gap-3 rounded-field px-3 py-2.5 text-sm font-medium
+           text-ink-600 transition-all duration-200 hover:bg-ink-100 hover:text-ink-900;
+  }
+  .admin-nav-link[aria-current='page'] {
+    @apply bg-brand-50 font-bold text-brand-600;
+  }
+  .admin-nav-link[aria-current='page']::before {
+    content: '';
+    @apply absolute inset-y-1.5 w-[3px] rounded-full bg-brand-500;
+    inset-inline-start: -0.25rem;
+  }
+  .stat-card {
+    @apply flex items-center gap-4 rounded-card bg-white p-4 shadow-card transition-all
+           duration-300 hover:-translate-y-1 hover:shadow-card-hover;
+  }
+  .stat-icon {
+    @apply grid h-12 w-12 shrink-0 place-items-center rounded-field;
+  }
+
+  /* ======================= Account sidebar ========================= */
+  .account-link {
+    @apply relative flex items-center gap-3 px-5 py-3 text-sm text-ink-700 transition-all
+           duration-200 hover:bg-ink-50;
+  }
+  .account-link[aria-current='page'] {
+    @apply bg-brand-50 font-bold text-brand-600;
+  }
+  .account-link[aria-current='page']::after {
+    content: '';
+    @apply absolute inset-y-0 w-[3px] bg-brand-500;
+    inset-inline-end: 0;
+  }
+
+  /* ========================== Pagination =========================== */
+  .page-link {
+    @apply grid h-9 min-w-9 place-items-center rounded-field border border-ink-200 bg-white px-2.5
+           text-xs font-bold text-ink-600 transition-all duration-200 hover:border-brand-300
+           hover:text-brand-500;
+  }
+  .page-link[aria-current='page'] {
+    @apply border-brand-500 bg-brand-500 text-white;
+  }
+  .page-link[aria-disabled='true'] {
+    @apply pointer-events-none opacity-40;
+  }
+
+  /* ========================= Header bits =========================== */
+  .nav-link {
+    @apply relative whitespace-nowrap py-3 text-[0.8125rem] font-medium text-ink-700
+           transition-colors duration-200 hover:text-brand-500;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute inset-x-0 bottom-1.5 h-0.5 origin-center scale-x-0 rounded-full bg-brand-500
+           transition-transform duration-300 ease-out-soft;
+  }
+  .nav-link:hover::after {
+    @apply scale-x-100;
+  }
+
+  /* ========================= Footer bits =========================== */
+  .footer-link {
+    @apply block py-1.5 text-[0.8125rem] text-ink-300 transition-all duration-200
+           hover:text-white;
+  }
+  .footer-link:hover {
+    padding-inline-start: 0.25rem;
+  }
+  .footer-title {
+    @apply mb-3 text-sm font-bold text-white;
+  }
+  .social-btn {
+    @apply grid h-10 w-10 place-items-center rounded-full border border-white/15 text-ink-300
+           transition-all duration-300 hover:scale-110 hover:border-brand-500 hover:bg-brand-500
+           hover:text-white;
+  }
+
+  /* ======================= Horizontal rail ========================= */
+  .rail {
+    @apply flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth pb-2;
+    scrollbar-width: none;
+  }
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+  .rail > * {
+    @apply snap-start;
+  }
+  .rail-btn {
+    @apply absolute top-1/2 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full
+           border border-ink-200 bg-white text-ink-600 shadow-card transition-all duration-200
+           hover:scale-110 hover:text-brand-500 disabled:pointer-events-none disabled:opacity-0;
+  }
+
+  /* ====================== Range (price filter) ===================== */
+  .range-track {
+    @apply relative h-1 w-full rounded-pill bg-ink-200;
+  }
+  .range-fill {
+    @apply absolute inset-y-0 rounded-pill bg-brand-500;
+  }
+  .range-thumb {
+    @apply absolute top-1/2 h-4 w-4 -translate-y-1/2 cursor-grab rounded-full border-2
+           border-white bg-brand-500 shadow transition-transform duration-150
+           hover:scale-125 active:scale-110 active:cursor-grabbing;
+  }
+
+  /* =========================== Utilities =========================== */
+  .link-muted {
+    @apply text-ink-500 hover:text-brand-500;
+  }
+  .icon-tile {
+    @apply grid place-items-center rounded-field bg-ink-100 text-ink-600;
+  }
+}
+
+/* -------------------------------------------------------------- utilities */
+@layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .grid-auto-fill-cards {
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  }
+  /* Reveal-on-scroll: JS toggles [data-reveal] -> [data-revealed] */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  [data-reveal][data-revealed] {
+    opacity: 1;
+    transform: none;
+  }
+  .stagger > * {
+    animation: fade-up 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+  .stagger > *:nth-child(1) { animation-delay: 0.04s; }
+  .stagger > *:nth-child(2) { animation-delay: 0.08s; }
+  .stagger > *:nth-child(3) { animation-delay: 0.12s; }
+  .stagger > *:nth-child(4) { animation-delay: 0.16s; }
+  .stagger > *:nth-child(5) { animation-delay: 0.2s; }
+  .stagger > *:nth-child(6) { animation-delay: 0.24s; }
+  .stagger > *:nth-child(7) { animation-delay: 0.28s; }
+  .stagger > *:nth-child(8) { animation-delay: 0.32s; }
+  .stagger > *:nth-child(9) { animation-delay: 0.36s; }
+  .stagger > *:nth-child(10) { animation-delay: 0.4s; }
+  .stagger > *:nth-child(11) { animation-delay: 0.44s; }
+  .stagger > *:nth-child(12) { animation-delay: 0.48s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* --------------------------------------------------------------- printing */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+}
