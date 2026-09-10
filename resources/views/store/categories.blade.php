@@ -1,0 +1,3 @@
+@extends('layouts.app')
+@section('title','دسته‌بندی محصولات | دیجینو')
+@section('content')<div class="container page-wrap"><div class="breadcrumb"><a href="/">خانه</a>@include('partials.icon',['name'=>'left'])<span>دسته‌بندی کالاها</span></div><div class="page-head"><div><h1>دنیای دیجیتال، برای همهٔ نیازها</h1><p>از اینجا، انتخاب بعدی‌تان را پیدا کنید.</p></div></div><div class="category-grid">@foreach($navCategories as $c)<a class="category-card" href="/category/{{ $c->slug }}"><div><img src="{{ $c->image }}" alt="{{ $c->name }}"></div><h3>{{ $c->name }}</h3><small>@money($c->products_count) محصول</small></a>@endforeach</div></div>@endsection

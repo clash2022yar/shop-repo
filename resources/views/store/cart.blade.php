@@ -1,0 +1,3 @@
+@extends('layouts.app')
+@section('title','سبد خرید | دیجینو')
+@section('content')<div class="container page-wrap"><div class="breadcrumb"><a href="/">خانه</a>@include('partials.icon',['name'=>'left'])<span>سبد خرید</span></div><div class="page-head"><div><h1>سبد خرید شما</h1><p>یک قدم نزدیک‌تر به انتخاب تازه‌تان</p></div></div><div id="cart-content">@include('partials.cart-content')</div><section class="section"><div class="section-heading"><h2>شاید به این‌ها هم علاقه‌مند باشید</h2><a class="view-all" href="/products">مشاهده همه @include('partials.icon',['name'=>'left'])</a></div><div class="products-row">@foreach($related as $p)@include('partials.product-card')@endforeach</div></section></div>@endsection

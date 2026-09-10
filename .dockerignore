@@ -1,0 +1,7 @@
+.git
+.env
+node_modules
+vendor
+shop-images
+image-search
+storage/logs

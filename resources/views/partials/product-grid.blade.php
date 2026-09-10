@@ -1,0 +1,1 @@
+@if($products->count())<div class="product-grid">@foreach($products as $p)@include('partials.product-card')@endforeach</div>{{ $products->links() }}@else<div class="empty-state">@include('partials.icon',['name'=>'search'])<h3>محصولی پیدا نشد</h3><p>عبارت جستجو یا فیلترهای انتخابی را تغییر دهید.</p><a href="/products" class="btn btn-primary">نمایش همه محصولات</a></div>@endif

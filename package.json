@@ -1,0 +1,6 @@
+{
+  "name": "digino-shop",
+  "private": true,
+  "scripts": { "build": "tailwindcss -i resources/css/tailwind.css -o public/assets/tailwind.css --minify" },
+  "devDependencies": { "tailwindcss": "^3.4.17" }
+}
