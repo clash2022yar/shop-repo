@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "echo 'Tailwind via CDN - no build step needed'",
+    "build": "echo 'No vite - using CDN'"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,8 @@
+<svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="36" height="36" rx="10" fill="#ef4056"/>
+  <g transform="translate(9,10)" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+  </g>
+  <text x="48" y="24" font-family="Vazirmatn, Tahoma" font-size="18" font-weight="800" fill="#ef4056">دیجینو</text>
+  <text x="48" y="34" font-family="Vazirmatn, Tahoma" font-size="9" fill="#81858b">خرید هوشمند</text>
+</svg>
